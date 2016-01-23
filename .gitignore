@@ -1,0 +1,10 @@
+*.db
+*.pyc
+*.sqlite3
+.coverage
+.idea
+.venv
+__pycache__
+settings_local.py
+node_modules
+npm_debug.log
