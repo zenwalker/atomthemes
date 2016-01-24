@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import '../styles/theme.css';
 
 const Theme = (props) => {
@@ -15,7 +15,11 @@ const Theme = (props) => {
       </h2>
       <div className="theme_screenshot" style={creenshotStyle}/>
     </div>
-  )
+  );
+};
+
+Theme.propTypes = {
+  data: PropTypes.object,
 };
 
 export default Theme;

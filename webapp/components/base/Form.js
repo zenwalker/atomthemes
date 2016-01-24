@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Form extends Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,6 +14,22 @@ class Form extends Component {
     return {};
   }
 
+  setFormValue(field, value) {
+    this.setState({
+      form: Object.assign(this.state.form || {}, {
+        [field]: value,
+      }),
+    }, this.formWillUpdate);
+  }
+
+  setFormError(field, message) {
+    this.setState({
+      errors: Object.assign(this.state.errors || {}, {
+        [field]: message,
+      }),
+    });
+  }
+
   bindToForm(e) {
     const { name, value } = e.currentTarget;
 
@@ -22,22 +38,6 @@ class Form extends Component {
     }
 
     this.setFormValue(name, value);
-  }
-
-  setFormValue(field, value) {
-    this.setState({
-      form: Object.assign(this.state.form || {}, {
-        [field]: value,
-      })
-    }, this.formWillUpdate);
-  }
-
-  setFormError(field, message) {
-    this.setState({
-      errors: Object.assign(this.state.errors || {}, {
-        [field]: message,
-      })
-    });
   }
 
   formWillUpdate() {}

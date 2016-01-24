@@ -35,7 +35,8 @@ class ThemeList extends Component {
 
   handleScroll() {
     const scrolledY = window.pageYOffset || document.documentElement.scrollTop;
-    const body = document.body, html = document.documentElement;
+    const html = document.documentElement;
+    const body = document.body;
 
     const scrollHeight = Math.max(
       body.scrollHeight, body.offsetHeight,
@@ -43,7 +44,8 @@ class ThemeList extends Component {
     ) - window.outerHeight - 200;
 
     if (!this.state.inProgress && scrolledY >= scrollHeight) {
-      let { formData, page } = this.state;
+      const { formData } = this.state;
+      let { page } = this.state;
       page++;
 
       this.fetchData(formData, { page });
@@ -57,7 +59,7 @@ class ThemeList extends Component {
     });
   }
 
-  fetchData(formData, query={}) {
+  fetchData(formData, query = {}) {
     let themes = this.state.themes;
     this.setState({ inProgress: true });
 
@@ -87,7 +89,7 @@ class ThemeList extends Component {
           <SearchForm onChange={this.throttledFormUpdate.bind(this)} />
         </div>
         <div className="package-list_packages">
-          {themes.map(function(theme, i) {
+          {themes.map((theme, i) => {
             return <Theme key={i} data={theme} />;
           })}
         </div>

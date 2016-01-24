@@ -31,17 +31,13 @@ class SearchForm extends Form {
           />
         </div>
         <div className="search-form_switch">
-          <label className={cx('search-form_switch_item', {
-            '-active': form.type === 'ui'
-          })}>
+          <label className={cx('search-form_switch_item', { '-active': form.type === 'ui' })}>
             <input type="radio" name="type" value="ui"
               checked={ form.type === 'ui' }
               onChange={this.bindToForm.bind(this)}
             /> UI
           </label>
-          <label className={cx('search-form_switch_item', {
-            '-active': form.type === 'syntax'
-          })}>
+          <label className={cx('search-form_switch_item', { '-active': form.type === 'syntax' })}>
             <input type="radio" name="type" value="syntax"
               checked={ form.type === 'syntax' }
               onChange={this.bindToForm.bind(this)}

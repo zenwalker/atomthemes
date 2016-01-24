@@ -1,18 +1,17 @@
-var _ = require('lodash');
-var path = require('path');
-var webpack = require('webpack');
-var extend = require('util')._extend;
-var autoprefixer = require('autoprefixer');
-var HtmlPlugin = require('html-webpack-plugin');
-var TextPlugin = require('extract-text-webpack-plugin');
-var dependencies = Object.keys(require(__dirname + '/package').dependencies);
-var configs = {};
+const _ = require('lodash');
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const HtmlPlugin = require('html-webpack-plugin');
+const TextPlugin = require('extract-text-webpack-plugin');
+const dependencies = Object.keys(require(__dirname + '/package').dependencies);
+const configs = {};
 
 /**
  * Global
  */
 
-configs.global = function(dirname) {
+configs.global = (dirname) => {
   return {
     context: dirname,
     entry: {
@@ -25,7 +24,7 @@ configs.global = function(dirname) {
     },
     resolve: {
       root: dirname,
-      extensions: ['', '.js', '.jsx']
+      extensions: ['', '.js', '.jsx'],
     },
     module: {
       loaders: [
@@ -47,11 +46,11 @@ configs.global = function(dirname) {
         template: path.join(dirname, 'webapp', 'index.html'),
         chunks: ['app', 'vendor'],
         filename: 'index.html',
-        inject: true
+        inject: true,
       }),
     ],
     postcss: [
-      autoprefixer()
+      autoprefixer(),
     ],
   };
 };
@@ -60,10 +59,8 @@ configs.global = function(dirname) {
  * Development
  */
 
-configs.development = function(dirname) {
-  var webpack = require('webpack');
-
-  var proxy = {
+configs.development = () => {
+  const proxy = {
     local: {
       '/api/*': {
         target: 'http://localhost:8000',
@@ -80,7 +77,7 @@ configs.development = function(dirname) {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-    ]
+    ],
   };
 };
 
@@ -88,7 +85,7 @@ configs.development = function(dirname) {
  * Production
  */
 
-configs.production = function(dirname) {
+configs.production = () => {
   return {
     debug: false,
     devtool: 'cheap-source-map',
@@ -96,29 +93,28 @@ configs.production = function(dirname) {
     module: {
       loaders: [
         { test: /\.css$/, loader: TextPlugin.extract('style', 'css!postcss') },
-      ]
+      ],
     },
     plugins: [
       new TextPlugin('[name].css', {
-        allChunks: true
+        allChunks: true,
       }),
       new webpack.optimize.UglifyJsPlugin({
         compress: { warnings: false },
-        output: { comments: false }
+        output: { comments: false },
       }),
     ],
   };
 };
 
-var load = function(enviroment) {
+const load = (enviroment) => {
   if (!enviroment) throw 'Can\'t find local enviroment variable via process.env.NODE_ENV';
   if (!configs[enviroment]) throw 'Can\'t find enviroments see _congigs object';
 
   return configs && _.merge(
-    configs['global'](__dirname),
+    configs.global(__dirname),
     configs[enviroment](__dirname)
   );
-}
+};
 
 module.exports = load(process.env.NODE_ENV);
-console.log(module.exports.module.loaders);
