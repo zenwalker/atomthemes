@@ -1,7 +1,5 @@
 .spinner {
   animation: spinner-rotator 1.4s linear infinite;
-  display: block;
-  margin: 20px auto;
 }
 
 .spinner_path {

@@ -11,7 +11,7 @@ class Theme(models.Model):
     stars = models.IntegerField(default=0)
 
     @property
-    def atom_io_url(self):
+    def atom_url(self):
         return 'https://atom.io/themes/' + self.name
 
     class Meta:

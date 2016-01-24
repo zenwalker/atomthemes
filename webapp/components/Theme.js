@@ -4,10 +4,16 @@ import '../styles/theme.css';
 const Theme = (props) => {
   const { data } = props;
 
+  const creenshotStyle = {
+    backgroundImage: `url(${data.screenshot})`,
+  };
+
   return (
     <div className="theme">
-      <h2 className="theme_name">{data.name}</h2>
-      <img className="theme_screenshot" src={data.screenshot} alt="" />
+      <h2 className="theme_name">
+        <a href={data.atom_url} target="_blank">{data.name}</a>
+      </h2>
+      <div className="theme_screenshot" style={creenshotStyle}/>
     </div>
   )
 };

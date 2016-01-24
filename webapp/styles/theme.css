@@ -1,3 +1,9 @@
 .theme_screenshot {
-  max-width: 100%;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  background-size: cover;
+  border-radius: 4px;
+  height: 300px;
+  width: 100%;
 }

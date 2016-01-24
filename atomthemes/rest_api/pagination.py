@@ -3,6 +3,8 @@ from rest_framework.response import Response
 
 
 class LinkHeaderPagination(pagination.PageNumberPagination):
+    page_size = 20
+
     def get_paginated_response(self, data):
         next_url = self.get_next_link()
         previous_url = self.get_previous_link()
