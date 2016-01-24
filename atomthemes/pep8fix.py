@@ -2,7 +2,7 @@ from inflection import underscore
 from unittest import TestCase as BaseTestCase
 
 
-def pep8_patch(cls, exclude=[]):
+def pep8fix(cls, exclude=[]):
     exclude = set(exclude)
     for attr_name in dir(cls):
         if attr_name in exclude or attr_name.startswith('_'):
@@ -24,4 +24,4 @@ class TestCase(BaseTestCase):
             tear_down()
 
 
-pep8_patch(TestCase, exclude=['setUp', 'tearDown'])
+pep8fix(TestCase, exclude=['setUp', 'tearDown'])

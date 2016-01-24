@@ -1,7 +1,8 @@
 from atomthemes.celery import celery_app
+import logging
+
 from .readme import ReadmeReader
 from .models import Theme
-import logging
 
 logger = logging.getLogger(__name__)
 

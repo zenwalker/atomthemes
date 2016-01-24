@@ -10,6 +10,10 @@ class Theme(models.Model):
     downloads = models.IntegerField(default=0)
     stars = models.IntegerField(default=0)
 
+    @property
+    def atom_io_url(self):
+        return 'https://atom.io/themes/' + self.name
+
     class Meta:
         ordering = ['-downloads', '-stars']
 

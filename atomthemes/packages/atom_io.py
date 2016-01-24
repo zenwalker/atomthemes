@@ -31,7 +31,6 @@ class PagePool:
 
         self.first_page_response = requests.get(request_url, params=params, headers=headers)
         self.page_count = self.page_number_from_url(self.first_page_response.links['last']['url']) - 1
-        print(self.first_page_response.links['last'])
 
     def __iter__(self):
         for page_n in range(self.page_count):

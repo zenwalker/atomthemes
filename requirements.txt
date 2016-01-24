@@ -1,4 +1,5 @@
-django
-django-nose
-inflection
-markdown
+django>=1.9,<1.10
+django-nose>=1.4,<1.5
+djangorestframework>=3.3,<3.4
+inflection>=0.3,<0.4
+markdown>=2.6,<2.7
