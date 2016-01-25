@@ -19,7 +19,7 @@ class SearchForm extends Form {
 
   render() {
     const { form } = this.state;
-    const placeholder = `Search ${form.type} themes ...`;
+    const placeholder = `Search ${form.type} themes`;
 
     return (
       <form className="search-form">

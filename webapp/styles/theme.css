@@ -1,9 +1,33 @@
+.theme {
+  background: url("../images/no-thumb.png") center no-repeat;
+  border: 1px solid #333;
+  text-decoration: none;
+  margin-bottom: 50px;
+  position: relative;
+  display: block;
+  color: #000;
+}
+
+.theme_info {
+  background: rgba(255,255,255, 0.8);
+  border-top: 1px solid #333;
+  position: absolute;
+  padding: 10px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.theme_name {
+  margin: 0;
+  text-align: center;
+}
+
 .theme_screenshot {
   background-repeat: no-repeat;
+  background-position: top;
   box-sizing: border-box;
-  border: 1px solid #333;
   background-size: cover;
-  border-radius: 4px;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }

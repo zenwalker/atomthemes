@@ -9,12 +9,12 @@ const Theme = (props) => {
   };
 
   return (
-    <div className="theme">
-      <h2 className="theme_name">
-        <a href={data.atom_url} target="_blank">{data.name}</a>
-      </h2>
+    <a className="theme" href={data.atom_url} target="_blank" title={data.name}>
+      <div className="theme_info">
+        <h2 className="theme_name">{data.name}</h2>
+      </div>
       <div className="theme_screenshot" style={creenshotStyle}/>
-    </div>
+    </a>
   );
 };
 

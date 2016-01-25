@@ -29,7 +29,6 @@ configs.global = (dirname) => {
     module: {
       loaders: [
         { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-        { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
         { test: /\.(jpg|png|woff)$/, loader: 'url?limit=10000' },
         { test: /\.json$/, loader: 'json' },
       ],
@@ -75,6 +74,11 @@ configs.development = () => {
       inline: true,
       info: true,
     },
+    module: {
+      loaders: [
+        { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
+      ],
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
     ],
@@ -111,9 +115,14 @@ const load = (enviroment) => {
   if (!enviroment) throw 'Can\'t find local enviroment variable via process.env.NODE_ENV';
   if (!configs[enviroment]) throw 'Can\'t find enviroments see _congigs object';
 
-  return configs && _.merge(
+  return configs && _.mergeWith(
     configs.global(__dirname),
-    configs[enviroment](__dirname)
+    configs[enviroment](__dirname),
+    (a, b) => {
+      if (_.isArray(a)) {
+        return a.concat(b);
+      }
+    }
   );
 };
 

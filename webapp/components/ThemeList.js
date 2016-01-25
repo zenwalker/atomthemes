@@ -65,6 +65,7 @@ class ThemeList extends Component {
 
     request
       .get('/api/themes')
+      .set('Accept', 'application/json')
       .query(formData)
       .query(query)
       .end((err, res) => {
